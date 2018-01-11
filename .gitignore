@@ -6,12 +6,14 @@ capybara-*.html
 /db/*.sqlite3
 /db/*.sqlite3-journal
 /public/system
+/public/assets/*
 /coverage/
 /spec/tmp
 *.orig
 rerun.txt
 pickle-email-*.html
-config/master.key
+logfile
+storage/.keep
 
 # TODO Comment out this rule if you are OK with secrets being uploaded to the repo
 config/initializers/secret_token.rb
@@ -44,5 +46,8 @@ bower.json
 # Ignore Byebug command history file.
 .byebug_history
 
-# Ignore node_modules
-node_modules/
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+/public/packs
+/public/packs-test
+/node_modules

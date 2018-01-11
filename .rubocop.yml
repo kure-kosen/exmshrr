@@ -1,0 +1,28 @@
+inherit_gem:
+  onkcop:
+    - "config/rubocop.yml"
+    # uncomment if use rails cops
+    - "config/rails.yml"
+    # uncomment if use rspec cops
+    - "config/rspec.yml"
+
+AllCops:
+  TargetRubyVersion: 2.4
+  TargetRailsVersion: 5.2
+  Exclude:
+    - "frontend/node_modules/**/*"
+    - "node_modules/**/*"
+    - "vendor/**/*"
+    - "db/schema.rb"
+
+Metrics/BlockLength:
+  Exclude:
+    - "Rakefile"
+    - "**/*.rake"
+    - "spec/**/*.rb"
+    - "Gemfile"
+    - "Guardfile"
+    - "config/environments/*.rb"
+    - "config/routes.rb"
+    - "config/routes/**/*.rb"
+    - "*.gemspec"
