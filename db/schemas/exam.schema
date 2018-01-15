@@ -1,7 +1,7 @@
 create_table :exams do |t|
-  # t.integer :user_id
-  # t.integer :teacher_id
-  # t.integer :subject_id
+  t.integer :user_id, limit: 8, null: false
+  t.integer :teacher_id, limit: 8, null: false
+  t.integer :subject_id, limit: 8, null: false
   t.string :images, null: false
   t.integer :type, null: false
   t.integer :grade
@@ -9,3 +9,11 @@ create_table :exams do |t|
 
   t.timestamps
 end
+
+add_index :exams, :user_id
+add_index :exams, :subject_id
+add_index :exams, :teacher_id
+
+add_foreign_key :exams, :users
+add_foreign_key :exams, :subjects
+add_foreign_key :exams, :teachers
