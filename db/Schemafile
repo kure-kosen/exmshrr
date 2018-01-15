@@ -1,1 +1,4 @@
 require 'schemas/active_storage.schema'
+require 'schemas/exam.schema'
+require 'schemas/subject.schema'
+require 'schemas/teacher.schema'
