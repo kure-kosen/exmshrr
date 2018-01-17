@@ -41,11 +41,11 @@ ActiveRecord::Schema.define(version: 0) do
     t.bigint "teacher_id", null: false
     t.bigint "subject_id", null: false
     t.string "images", null: false
-    t.integer "type", null: false
     t.integer "grade"
     t.integer "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "kind", null: false
     t.index ["subject_id"], name: "index_exams_on_subject_id"
     t.index ["teacher_id"], name: "index_exams_on_teacher_id"
     t.index ["user_id"], name: "index_exams_on_user_id"

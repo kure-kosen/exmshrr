@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "exams#index"
+  root to: "api/exams#index"
 
   namespace :api do
     resources :exams, only: %i[index show create]
