@@ -58,13 +58,12 @@
 </template>
 
 <script>
-export default {
-  data: () => ({
-    drawer: true
-  }),
-  props: {
-    source: String
-  }
+module.exports = {
+  data: function () {
+    return {
+      items: ['hoge', 'fuga', 'piyo'],
+    }
+  },
 }
 </script>
 
