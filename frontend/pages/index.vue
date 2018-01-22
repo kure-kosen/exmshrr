@@ -15,7 +15,7 @@
         <v-layout row wrap>
           <v-flex xs12 v-for="exam in exams" :key='exam.attributes.id'>
             <v-card append :to="{ name: 'exam', params: { id: exam.id } }">
-              <v-card-media src="https://placehold.jp/400x300.png" height="200px"></v-card-media>
+              <v-card-media :src="exam.attributes.images[0]" height="200px"></v-card-media>
               <v-card-title primary-title>
                 <h3 class="headline mb-0">{{ exam.relationships.subject.data.name }}</h3>
               </v-card-title>

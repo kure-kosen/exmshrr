@@ -11,10 +11,7 @@
       <v-container fluid>
         <v-layout row wrap>
           <v-carousel>
-            <v-carousel-item src="https://placehold.jp/200x300.png"></v-carousel-item>
-            <v-carousel-item src="https://placehold.jp/200x300.png"></v-carousel-item>
-            <v-carousel-item src="https://placehold.jp/200x300.png"></v-carousel-item>
-            <v-carousel-item src="https://placehold.jp/200x300.png"></v-carousel-item>
+            <v-carousel-item :src="image" v-for="image in exam.attributes.images" :key="image"></v-carousel-item>
           </v-carousel>
           <v-flex xs12>
             <div class="mt-5">
