@@ -4,9 +4,9 @@ module Api
     skip_before_action :verify_authenticity_token
 
     def index
-      @exams = Exam.all.order(updated_at: :desc)
+      exams = Exam.eager_load(:user, :subject, :teacher).order(updated_at: :desc)
 
-      render json: @exams, each_serializer: ExamSerializer
+      render json: filtered(exams), each_serializer: ExamSerializer
     end
 
     def create
@@ -37,6 +37,39 @@ module Api
         params = ActionController::Parameters.new({ exam: exam })
 
         params.require(:exam).permit(:subject_id, :teacher_id, :kind, :grade, :year, { exam_images: [] })
+      end
+
+      def filtered(exams)
+        exams = by_grade(exams)
+        exams = by_kind(exams)
+        exams = by_subject(exams)
+        exams = by_teacher(exams)
+
+        exams
+      end
+
+      def by_grade(exams)
+        return exams if params[:grade].blank?
+
+        exams.where(grade: params[:grade])
+      end
+
+      def by_kind(exams)
+        return exams if params[:kind].blank?
+
+        exams.where(kind: params[:kind])
+      end
+
+      def by_subject(exams)
+        return exams if params[:subject_id].blank?
+
+        exams.where(subject_id: params[:subject_id])
+      end
+
+      def by_teacher(exams)
+        return exams if params[:teacher_id].blank?
+
+        exams.where(teacher_id: params[:teacher_id])
       end
   end
 end

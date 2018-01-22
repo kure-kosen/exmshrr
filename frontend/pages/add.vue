@@ -64,17 +64,17 @@
   </v-app>
 </template>
 
-  <script>
+<script>
 module.exports = {
   data: function () {
     return {
       valid: false,
       grades: [1, 2, 3, 4, 5],
       kinds: {
-        '前期中間': 1,
-        '前期末': 2,
-        '後期中間': 3,
-        '学年末': 4
+        '前期中間': 0,
+        '前期末': 1,
+        '後期中間': 2,
+        '学年末': 3
       },
       subjects: {
         '微分積分': 1,
@@ -114,6 +114,8 @@ module.exports = {
         formData.append('exam_images[]', file)
       })
 
+      let that = this
+
       this.axios({
         method: 'post',
         url: '/api/exams',
@@ -124,6 +126,7 @@ module.exports = {
       })
         .then(function(response) {
           console.log(response)
+          that.$router.push('/')
         })
         .catch(function(error) {
           console.error(error)

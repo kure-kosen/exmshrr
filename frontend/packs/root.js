@@ -24,9 +24,9 @@ import Add from '../pages/add.vue'
 
 const router = new VueRouter({
   mode: 'history',
-  base: '/app/',
+  base: '/app',
   routes: [
-    { path: '/', component: Index },
+    { path: '/', component: Index, props: (route) => ({ query: route.query }) },
     { path: '/detail', component: Detail },
     { path: '/search', component: Search },
     { path: '/add', component: Add },

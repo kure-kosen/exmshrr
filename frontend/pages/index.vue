@@ -28,6 +28,9 @@
               </v-card-text>
             </v-card>
           </v-flex>
+          <v-flex xs12 v-if="exams.length == 0">
+            検索条件に当てはまる過去問はありません。
+          </v-flex>
         </v-layout>
       </v-container>
     </v-content>
@@ -41,12 +44,21 @@ module.exports = {
       exams: []
     }
   },
+  props: {
+    query: {
+      type: Object
+    }
+  },
   mounted: function () {
+    let search_query = '?grade=' + (this.query.grade || '') + '&kind=' + (this.query.kind || '') + '&subject_id=' + (this.query.subject_id || '') + '&teacher_id=' + (this.query.teacher_id || '')
+    console.log('search_query: ' + search_query)
+
     that = this
-    this.axios.get('/api/exams')
+    this.axios.get('/api/exams' + search_query)
       .then(function (response) {
         that.exams = response.data.data
         console.log(that.exams)
+        console.log(that.exams.length)
       })
   }
 }

@@ -10,46 +10,43 @@
     <v-content>
       <v-container fluid>
         <v-layout row>
-          <v-flex xs12>
-            <v-select
-              v-bind:items="items"
-              label="学年"
-              class="mb-4"
-              single-line
-              auto
-              prepend-icon="school"
-              hide-details
+        <v-flex xs12>
+          <v-select
+            label="学年"
+            required
+            :items="grades"
+            v-model="grade"
+            prepend-icon="school"
             ></v-select>
 
-            <v-select
-              bind:items="items"
-              label="期間"
-              class="mb-4"
-              single-line
-              auto
-              prepend-icon="date_range"
-              hide-details
+          <v-select
+            label="期間"
+            required
+            :items="Object.keys(kinds)"
+            v-model="kind"
+            prepend-icon="date_range"
             ></v-select>
 
-            <v-select
-              v-bind:items="items"
-              label="教科"
-              class="mb-4"
-              single-line
-              auto
-              prepend-icon="book"
-              hide-details
+          <v-select
+            label="教科"
+            required
+            :items="Object.keys(subjects)"
+            v-model="subject"
+            prepend-icon="book"
             ></v-select>
 
-            <v-select
-              v-bind:items="items"
-              label="先生"
-              class="mb-4"
-              single-line
-              auto
-              prepend-icon="face"
-              hide-details
+          <v-select
+            label="先生"
+            class="mb-4"
+            required
+            :items="Object.keys(teachers)"
+            v-model="teacher"
+            prepend-icon="face"
             ></v-select>
+
+            <div class="text-xs-right">
+              <v-btn color="blue darked-1" dark @click="submit">検索</v-btn>
+            </div>
           </v-flex>
         </v-layout>
       </v-container>
@@ -61,9 +58,41 @@
 module.exports = {
   data: function () {
     return {
-      items: ['hoge', 'fuga', 'piyo'],
+      valid: false,
+      grades: [1, 2, 3, 4, 5],
+      kinds: {
+        '前期中間': 0,
+        '前期末': 1,
+        '後期中間': 2,
+        '学年末': 3
+      },
+      subjects: {
+        '微分積分': 1,
+        '応用物理': 2,
+        '電気電子計測': 3,
+        '電気基礎': 4
+      },
+      teachers: {
+        'ほげ先生': 1,
+        'ふが先生': 2,
+        'ぴよ先生': 3,
+        'ふー先生': 4,
+      },
+      grade: null,
+      kind: null,
+      subject: null,
+      teacher: null,
     }
   },
+  methods: {
+    submit: function() {
+      this.$router.push({ path: '/',
+                          query: { grade: this.grade,
+                                   kind: this.kinds[this.kind],
+                                   subject_id: this.subjects[this.subject],
+                                   teacher_id: this.teachers[this.teacher] } })
+    },
+  }
 }
 </script>
 
