@@ -101,7 +101,6 @@ module.exports = {
   methods: {
     file_selected: function(e) {
       this.exam_images = e.target.files;
-      console.log(this.exam_images)
     },
     submit: function() {
       let formData = new FormData()
@@ -125,7 +124,6 @@ module.exports = {
         data: formData
       })
         .then(function(response) {
-          console.log(response)
           that.$router.push('/')
         })
         .catch(function(error) {

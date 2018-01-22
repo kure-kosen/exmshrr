@@ -57,8 +57,6 @@ module.exports = {
     this.axios.get('/api/exams' + search_query)
       .then(function (response) {
         that.exams = response.data.data
-        console.log(that.exams)
-        console.log(that.exams.length)
       })
   }
 }
