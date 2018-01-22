@@ -3,10 +3,12 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "^3.2.0",
+    "axios": "^0.17.1",
     "coffeescript": "1.12.7",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "vue": "^2.5.13",
+    "vue-axios": "^2.0.2",
     "vue-loader": "^13.7.0",
     "vue-router": "^3.0.1",
     "vue-template-compiler": "^2.5.13",

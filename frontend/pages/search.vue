@@ -27,7 +27,7 @@
               class="mb-4"
               single-line
               auto
-              prepend-icon="access_time"
+              prepend-icon="date_range"
               hide-details
             ></v-select>
 

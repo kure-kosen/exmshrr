@@ -5,20 +5,16 @@ import VueRouter from 'vue-router'
 import Vuetify from 'vuetify'
 import('vuetify/dist/vuetify.min.css')
 import('vuetify/src/stylus/main.styl')
-// require('es6-promise').polyfill()
-// import axios from 'axios'
-// import VueAxios from 'vue-axios'
+import Axios from 'axios'
+import VueAxios from 'vue-axios'
 
 Vue.use(VueRouter)
 Vue.use(Vuetify)
+Vue.use(VueAxios, Axios)
 // Vue.use(VueAxios, axios)
 
 // Component
 import App from '../app.vue'
-// import Header from '../components/header.vue'
-// import PersonalityFilter from '../components/personality-filter.vue'
-// Vue.component('app-header', Header)
-// Vue.component('personality-filter', PersonalityFilter)
 
 // Page
 import Index from '../pages/index.vue'
@@ -34,7 +30,7 @@ const router = new VueRouter({
     { path: '/detail', component: Detail },
     { path: '/search', component: Search },
     { path: '/add', component: Add },
-    // { path: '/radios/:id', name: 'radios', component: Radio },
+    { path: '/exams/:id', name: 'exam', component: Detail}
   ]
 })
 

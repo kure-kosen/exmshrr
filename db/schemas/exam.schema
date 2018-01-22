@@ -2,7 +2,7 @@ create_table :exams do |t|
   t.integer :user_id, limit: 8, null: false
   t.integer :teacher_id, limit: 8, null: false
   t.integer :subject_id, limit: 8, null: false
-  t.string :images, null: false
+  t.json :exam_images, null: false
   t.string :kind, null: false
   t.integer :grade
   t.integer :year

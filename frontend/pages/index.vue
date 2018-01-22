@@ -13,17 +13,17 @@
     <v-content>
       <v-container fluid grid-list-lg>
         <v-layout row wrap>
-          <v-flex xs12 v-for="i in 9" :key='i'>
-            <v-card to="/detail" append>
+          <v-flex xs12 v-for="exam in exams" :key='exam.attributes.id'>
+            <v-card append :to="{ name: 'exam', params: { id: exam.id } }">
               <v-card-media src="https://placehold.jp/400x300.png" height="200px"></v-card-media>
               <v-card-title primary-title>
-                <h3 class="headline mb-0">物理</h3>
+                <h3 class="headline mb-0">{{ exam.relationships.subject.data.name }}</h3>
               </v-card-title>
               <v-card-text>
                 <div>
-                  <v-chip label outline color="orange">4年</v-chip>
-                  <v-chip label outline color="light-green">前期中間</v-chip>
-                  <v-chip label outline color="light-blue">笠井</v-chip>
+                  <v-chip label outline color="orange">{{ exam.attributes.grade + '年' }}</v-chip>
+                  <v-chip label outline color="light-green">{{ exam.attributes.kind }}</v-chip>
+                  <v-chip label outline color="light-blue">{{ exam.relationships.teacher.data.name }}</v-chip>
                 </div>
               </v-card-text>
             </v-card>
@@ -34,6 +34,22 @@
   </v-app>
 </template>
 
-<script></script>
+<script>
+module.exports = {
+  data: function () {
+    return {
+      exams: []
+    }
+  },
+  mounted: function () {
+    that = this
+    this.axios.get('/api/exams')
+      .then(function (response) {
+        that.exams = response.data.data
+        console.log(that.exams)
+      })
+  }
+}
+</script>
 
 <style scoped></style>

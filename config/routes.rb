@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "api/exams#index"
 
   namespace :api do
     resources :exams, only: %i[index show create]
@@ -11,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   namespace :front, path: "/" do
+    root to: redirect("/app")
     get "/app(/*other)", to: "app#index"
   end
 end
