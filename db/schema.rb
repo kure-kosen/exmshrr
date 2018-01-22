@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "updated_at", null: false
     t.index ["subject_id"], name: "index_exams_on_subject_id"
     t.index ["teacher_id"], name: "index_exams_on_teacher_id"
+    t.index ["updated_at"], name: "index_exams_on_updated_at"
     t.index ["user_id"], name: "index_exams_on_user_id"
   end
 
